@@ -10,5 +10,8 @@
     <string name="location_msg_stopped">Location emulation is stopped</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-
+    
+    <string name="activity_appchooser_title">Choose Apps</string>
+    <string name="add_App">Add App</string>
+	<string name="hint">com.example.appname</string>
 </resources>

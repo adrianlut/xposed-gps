@@ -37,6 +37,15 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".AppChooser"
+            android:label="@string/activity_appchooser_title" 
+			android:parentActivityName="com.diycircuits.gpsfake.MainActivity">
+            <meta-data 
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.diycircuits.gpsfake.MainActivity" />
+        </activity>
+        
         <meta-data
             android:name="xposedmodule"
             android:value="true" />
@@ -52,15 +61,6 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCtdH18Z70SjS3NtUu5z3oJp7OmMVYLVMs" />
-
-        <activity
-            android:name=".AppChooser"
-            android:label="@string/title_activity_app_chooser"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="MainActivity" />
-        </activity>
     </application>
 
 </manifest>

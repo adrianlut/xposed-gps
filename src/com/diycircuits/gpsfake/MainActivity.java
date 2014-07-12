@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.view.Menu;
 import android.app.FragmentManager;
 import android.app.Fragment;
-import android.util.Log;
 import android.content.Context;
 import android.widget.Button;
 import android.widget.Toast;
@@ -78,6 +77,7 @@ public class MainActivity extends Activity implements OnCameraChangeListener, On
 			start.setText(started ? getString(R.string.stop) : getString(R.string.start));
 			settings.update(mInit.latitude, mInit.longitude, started);
 		} else if (v.getId() == R.id.select_apps) {
+			
 		}
 
 		if (started) {

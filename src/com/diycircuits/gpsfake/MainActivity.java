@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements OnCameraChangeListener, On
 			mMarker.position(mInit);
 			mMarker.draggable(true);
 
-			CameraUpdate cam = CameraUpdateFactory.newLatLng(mInit);
+			CameraUpdate cam = CameraUpdateFactory.newLatLngZoom(mInit, (float) 12.0);
 			mMap.moveCamera(cam);
 			mMap.addMarker(mMarker);
 		}
@@ -71,11 +71,13 @@ public class MainActivity extends Activity implements OnCameraChangeListener, On
 		boolean started = settings.isStarted();
 	
 		if (v.getId() == R.id.set_location) {
+			mInit = mMarker.getPosition();
 			settings.update(mInit.latitude, mInit.longitude, started);
 		} else if (v.getId() == R.id.start) {
 			Button start = (Button) findViewById(R.id.start);
 			started = !started;
 			start.setText(started ? getString(R.string.stop) : getString(R.string.start));
+			mInit = mMarker.getPosition();
 			settings.update(mInit.latitude, mInit.longitude, started);
 		} else if (v.getId() == R.id.select_apps) {
 			Intent i = new Intent(getApplicationContext(), AppChooser.class);
@@ -106,12 +108,11 @@ public class MainActivity extends Activity implements OnCameraChangeListener, On
 	}
 
 	public void onCameraChange(CameraPosition position) {
-		LatLng pos = mMarker.getPosition();
 		final Projection proj = mMap.getProjection();
 		final VisibleRegion vr = proj.getVisibleRegion();
 		final LatLng farLeft = vr.farLeft;
-		final LatLng farRight = vr.farRight;
-		final LatLng nearLeft = vr.nearLeft;
+		// final LatLng farRight = vr.farRight;
+		// final LatLng nearLeft = vr.nearLeft;
 		final LatLng nearRight = vr.nearRight;
 
 		double screenLat = Math.abs(farLeft.latitude - nearRight.latitude) / 2.0;

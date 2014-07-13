@@ -1,5 +1,7 @@
 package com.diycircuits.gpsfake;
 
+import java.util.HashSet;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import de.robv.android.xposed.XSharedPreferences;
@@ -9,6 +11,7 @@ public class Settings {
 	private static double lat = 22.2855200; // 22.318344;
 	private static double lng = 114.1576900; // 114.168655;
 	private static boolean start = false;
+	@SuppressWarnings("unused")
 	private Context context = null;
 	private XSharedPreferences xSharedPreferences = null;
     private SharedPreferences sharedPreferences = null;
@@ -39,6 +42,23 @@ public class Settings {
 		return lng;
     }
 
+	public HashSet<String> getApps() {
+		HashSet<String> defaultApps = new HashSet<String>();
+		defaultApps.add("com.nianticproject.ingress");
+		defaultApps.add("com.android.apps.maps");
+		
+		if (sharedPreferences != null) {
+			HashSet<String> Apps = (HashSet<String>) sharedPreferences.getStringSet("apps", defaultApps);
+			return Apps;
+		}
+		else if (xSharedPreferences != null) {
+			HashSet<String> Apps = (HashSet<String>) xSharedPreferences.getStringSet("apps", defaultApps);
+			return Apps;
+		}
+		
+		return defaultApps;
+	}
+	
 	public boolean isStarted() {
 		if (sharedPreferences != null)
 			return sharedPreferences.getBoolean("start", false);
@@ -55,6 +75,12 @@ public class Settings {
         prefEditor.apply();		
 	}
 
+	public void updateApps(HashSet<String> Apps) {
+		SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+		prefEditor.putStringSet("apps", Apps);
+		prefEditor.apply();
+	}
+	
 	public void reload() {
         xSharedPreferences.reload();
     }

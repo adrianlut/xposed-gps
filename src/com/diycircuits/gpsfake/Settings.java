@@ -8,8 +8,8 @@ import de.robv.android.xposed.XSharedPreferences;
 
 public class Settings {
 
-	private static double lat = 22.2855200; // 22.318344;
-	private static double lng = 114.1576900; // 114.168655;
+	private static double lat = 0.0;
+	private static double lng = 0.0;
 	private static boolean start = false;
 	@SuppressWarnings("unused")
 	private Context context = null;
@@ -28,17 +28,17 @@ public class Settings {
 
 	public double getLat() {
 		if (sharedPreferences != null)
-			return sharedPreferences.getFloat("latitude", (float) 22.2855200);
+			return sharedPreferences.getFloat("latitude", (float) 0.0);
 		else if (xSharedPreferences != null)
-			return xSharedPreferences.getFloat("latitude", (float) 22.2855200);
+			return xSharedPreferences.getFloat("latitude", (float) 0.0);
 		return lat;
     }
 
 	public double getLng() {
 		if (sharedPreferences != null)
-			return sharedPreferences.getFloat("longitude", (float) 114.1576900);
+			return sharedPreferences.getFloat("longitude", (float) 0.0);
 		else if (xSharedPreferences != null)
-			return xSharedPreferences.getFloat("longitude", (float) 114.1576900);
+			return xSharedPreferences.getFloat("longitude", (float) 0.0);
 		return lng;
     }
 
